@@ -6,7 +6,6 @@ import service.interfaces.FileRead;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class FileReadSerialize implements FileRead {
     @Override

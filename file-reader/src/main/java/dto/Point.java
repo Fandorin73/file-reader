@@ -7,16 +7,16 @@ public class Point implements Serializable {
     private String name;
     private int x;
     private int y;
-    private int z;
+
 
     public Point() {
     }
 
-    public Point(String name, int x, int y, int z) {
+    public Point(String name, int x, int y) {
         this.name = name;
         this.x = x;
         this.y = y;
-        this.z = z;
+
     }
 
     public String getName() {
@@ -31,16 +31,13 @@ public class Point implements Serializable {
         return y;
     }
 
-    public int getZ() {
-        return z;
-    }
+
 
     @Override
     public String toString() {
         return  "Name='" + name + '\'' +
                 ", X=" + x +
                 ", Y=" + y +
-                ", Z=" + z +
                 '}';
     }
 }
