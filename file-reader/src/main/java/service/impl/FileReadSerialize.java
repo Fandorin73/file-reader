@@ -6,7 +6,11 @@ import service.interfaces.FileRead;
 
 import java.io.*;
 import java.util.ArrayList;
-
+/**
+ * Чтение из файла с сериализацией.
+ *
+ * @author Andrey
+ */
 public class FileReadSerialize implements FileRead {
     @Override
     public ArrayList<Point> readFromFile(File file) {

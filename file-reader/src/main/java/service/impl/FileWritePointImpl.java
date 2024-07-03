@@ -1,27 +1,31 @@
 package service.impl;
 
-import constants.ConstForLine;
+import constants.ConstForPoint;
 import constants.Message;
 import dto.Point;
 import service.interfaces.FileWrite;
-
 import java.io.*;
-
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-public class FileWriteImpl implements FileWrite {
-
+/**
+ * Запись массива точек в файл.
+ *
+ * @author Andrey
+ */
+public class FileWritePointImpl implements FileWrite {
     @Override
-    // TODO: Сделать метод для перезаписи
     public void writeToFile(ArrayList<Point> points,File file,Boolean append) {
         try {
             FileOutputStream f = new FileOutputStream(file,append);
 
             for (Point point : points) {
-                f.write((ConstForLine.LINE_NAME + point.getName() + ConstForLine.SKIP_LINE).getBytes(StandardCharsets.UTF_8));
-                f.write((ConstForLine.LINE_X + point.getX() + ConstForLine.SKIP_LINE).getBytes(StandardCharsets.UTF_8));
-                f.write((ConstForLine.LINE_Y + point.getY() + ConstForLine.SKIP_LINE).getBytes(StandardCharsets.UTF_8));
+                f.write((ConstForPoint.LINE_NAME + point.getName() + ConstForPoint.SKIP_LINE)
+                        .getBytes(StandardCharsets.UTF_8));
+                f.write((ConstForPoint.LINE_X + point.getX() + ConstForPoint.SKIP_LINE)
+                        .getBytes(StandardCharsets.UTF_8));
+                f.write((ConstForPoint.LINE_Y + point.getY() + ConstForPoint.SKIP_LINE)
+                        .getBytes(StandardCharsets.UTF_8));
             }
             f.close();
         } catch (FileNotFoundException e) {

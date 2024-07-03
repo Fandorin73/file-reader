@@ -1,15 +1,16 @@
 package service.impl;
-
 import constants.Message;
 import dto.Point;
 import service.interfaces.FileWrite;
-
-
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Запись в файл с сериализацией.
+ *
+ * @author Andrey
+ */
 public class FileWriteSerialize implements FileWrite {
-
     @Override
     public void writeToFile(ArrayList<Point> points, File file, Boolean append) {
         try {
@@ -34,12 +35,15 @@ public class FileWriteSerialize implements FileWrite {
             System.out.println(Message.READING_FILE_ERROR.get());
         }
     }
+    /**
+     * Внутренний класс для корректной записи в файл с сериализацией.
+     *
+     * @author Andrey
+     */
     static class  MyObjectOutputStream extends ObjectOutputStream {
-
         public MyObjectOutputStream(OutputStream out) throws IOException {
             super(out);
         }
-
         public void writeStreamHeader() throws IOException {
             return;
         }
