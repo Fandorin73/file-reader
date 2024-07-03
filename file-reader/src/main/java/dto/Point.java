@@ -3,7 +3,7 @@ package dto;
 import java.io.Serializable;
 
 /**
- * DTO точки с координатами X и Y
+ * DTO точки с названием, координатами X и Y
  *
  * @author Andrey
  */
