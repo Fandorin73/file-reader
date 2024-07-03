@@ -7,7 +7,7 @@ public enum Message {
     READING_FILE_ERROR("Reading file error"),
     READING_OBJECT_ERROR("Reading object from file error"),
 
-    GENERAL_ERROR("General error occurred %s"),
+    FILE_EMPTY_ERROR("File is empty"),
     TOKEN_NOT_FOUND_BY_KEYCLOAK_ID("Token not found by keycloak %s"),
     SBBOL_API_REQUEST_ERROR("General request API exception: %s"),
     CONSTRAINT_VIOLATION_ERROR("Constraint violation error: %s")

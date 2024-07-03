@@ -9,10 +9,10 @@ import java.util.ArrayList;
 
 public class FileReadSerialize implements FileRead {
     @Override
-    public ArrayList<Point> readFromFile() {
+    public ArrayList<Point> readFromFile(File file) {
         ArrayList<Point> points = new ArrayList<>();
         try {
-            FileInputStream f = new FileInputStream(new File("Points.txt"));
+            FileInputStream f = new FileInputStream(file);
             ObjectInputStream o = new ObjectInputStream(f);
             while (true) {
                 try {
@@ -23,12 +23,9 @@ public class FileReadSerialize implements FileRead {
             }
             o.close();
             f.close();
-
-        } catch (
-                FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.out.println(Message.FILE_NOT_FOUND.format());
-        } catch (
-                IOException e) {
+        } catch (IOException e) {
             System.out.println(Message.READING_FILE_ERROR.get());
         } catch (ClassNotFoundException e) {
             System.out.println(Message.READING_OBJECT_ERROR.get());
