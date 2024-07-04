@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class PointParse implements Parse {
     @Override
     public ArrayList<Point> parseToObj(StringBuilder sb) {
-        ArrayList<Point> points = new ArrayList<>();
+        var points = new ArrayList<Point>();
         int count = 0;
         try {
             while (!sb.isEmpty()) {

@@ -14,15 +14,15 @@ public class FileWriteSerialize implements FileWrite {
     @Override
     public void writeToFile(ArrayList<Point> points, File file, Boolean append) {
         try {
-            FileOutputStream f = new FileOutputStream(file, append);
+            var f = new FileOutputStream(file, append);
             if (file.length() < 1) {
-                ObjectOutputStream o = new ObjectOutputStream(f);
+                var o = new ObjectOutputStream(f);
                 for (Point point : points) {
                     o.writeObject(point);
                 }
                 o.close();
             } else {
-                MyObjectOutputStream o = new MyObjectOutputStream(f);
+                var o = new MyObjectOutputStream(f);
                 for (Point point : points) {
                     o.writeObject(point);
                 }
@@ -36,7 +36,7 @@ public class FileWriteSerialize implements FileWrite {
         }
     }
     /**
-     * Внутренний класс для корректной записи в файл с сериализацией.
+     * Статический вложенный класс для корректной записи в файл с сериализацией.
      *
      * @author Andrey
      */

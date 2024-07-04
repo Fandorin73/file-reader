@@ -17,7 +17,7 @@ public class FileWritePointImpl implements FileWrite {
     @Override
     public void writeToFile(ArrayList<Point> points,File file,Boolean append) {
         try {
-            FileOutputStream f = new FileOutputStream(file,append);
+            var f = new FileOutputStream(file,append);
             for (Point point : points) {
                 f.write((ConstForPoint.LINE_NAME + point.getName() + ConstForPoint.SKIP_LINE)
                         .getBytes(StandardCharsets.UTF_8));

@@ -3,7 +3,6 @@ package service.impl;
 import constants.Message;
 import dto.Point;
 import service.interfaces.FileRead;
-
 import java.io.*;
 import java.util.ArrayList;
 /**
@@ -14,10 +13,10 @@ import java.util.ArrayList;
 public class FileReadSerialize implements FileRead {
     @Override
     public ArrayList<Point> readFromFile(File file) {
-        ArrayList<Point> points = new ArrayList<>();
+        var points = new ArrayList<Point>();
         try {
-            FileInputStream f = new FileInputStream(file);
-            ObjectInputStream o = new ObjectInputStream(f);
+            var f = new FileInputStream(file);
+            var o = new ObjectInputStream(f);
             while (true) {
                 try {
                     points.add((Point) o.readObject());

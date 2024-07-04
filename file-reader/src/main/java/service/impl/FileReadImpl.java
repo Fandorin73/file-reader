@@ -1,13 +1,10 @@
 package service.impl;
 
 import constants.Message;
-import dto.Point;
 import exception.FileEmptyException;
 import service.interfaces.FileRead;
-
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Optional;
+
 /**
  * Чтение строки из файла без сериализации.
  *
@@ -16,7 +13,7 @@ import java.util.Optional;
 public class FileReadImpl implements FileRead {
     @Override
     public StringBuilder readFromFile(File file) {
-        StringBuilder stringBuilder = new StringBuilder();
+        var stringBuilder = new StringBuilder();
         try {
             if (file.length() < 1) {
                 throw new FileEmptyException("Ошибка чтения файла");
