@@ -18,7 +18,6 @@ public class FileWritePointImpl implements FileWrite {
     public void writeToFile(ArrayList<Point> points,File file,Boolean append) {
         try {
             FileOutputStream f = new FileOutputStream(file,append);
-
             for (Point point : points) {
                 f.write((ConstForPoint.LINE_NAME + point.getName() + ConstForPoint.SKIP_LINE)
                         .getBytes(StandardCharsets.UTF_8));
@@ -28,6 +27,7 @@ public class FileWritePointImpl implements FileWrite {
                         .getBytes(StandardCharsets.UTF_8));
             }
             f.close();
+
         } catch (FileNotFoundException e) {
             System.out.println(Message.FILE_NOT_FOUND.format());
         } catch (IOException e) {

@@ -1,9 +1,12 @@
+import constants.ConstForPoint;
 import dto.Point;
 import dto.comparator.PointDistanceFromOriginComparator;
 import parse.Parse;
 import parse.PointParse;
 import service.impl.FileReadImpl;
 import service.impl.FileWritePointImpl;
+import service.impl.FileWriteSerialize;
+import service.impl.FileWriteSortDistPoint;
 import service.interfaces.FileRead;
 import service.interfaces.FileWrite;
 
@@ -40,7 +43,7 @@ public class Main {
         //Тест чтения из файла
         FileRead fileRead = new FileReadImpl();
         PointParse parsePoint = new PointParse();
-        ArrayList<Point> arrayResult = new ArrayList<Point>();
+        ArrayList<Point> arrayResult = new ArrayList<>();
         arrayResult = parsePoint
                 .parseToObj((StringBuilder) fileRead
                         .readFromFile(new File("Points.txt")));
@@ -48,9 +51,13 @@ public class Main {
             System.out.println(point);
         }
         System.out.println();
-        arrayResult.stream()
+
+       /* arrayResult.stream()
                 .sorted(new PointDistanceFromOriginComparator())
-                .forEach(System.out::println);
+                .forEach(System.out::println);*/
+
+        FileWrite fileWrite1=new FileWriteSortDistPoint();
+        fileWrite1.writeToFile(arrayResult,new File(ConstForPoint.FILE_STATISTICS_POINT),false);
 
 
     }

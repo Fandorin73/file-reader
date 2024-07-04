@@ -10,4 +10,6 @@ public class ConstForPoint {
     public static final String LINE_NAME = "Точка: ";
     public static final String LINE_X = "Координаты X: ";
     public static final String LINE_Y = "Координаты Y: ";
+
+    public static final String FILE_STATISTICS_POINT="Points Statistics.txt";
 }
