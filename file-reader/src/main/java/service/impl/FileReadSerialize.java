@@ -14,9 +14,7 @@ public class FileReadSerialize implements FileRead {
     @Override
     public ArrayList<Point> readFromFile(File file) {
         var points = new ArrayList<Point>();
-        try {
-            var f = new FileInputStream(file);
-            var o = new ObjectInputStream(f);
+        try( var f = new FileInputStream(file);var o = new ObjectInputStream(f)) {
             while (true) {
                 try {
                     points.add((Point) o.readObject());
@@ -24,8 +22,6 @@ public class FileReadSerialize implements FileRead {
                     break;
                 }
             }
-            o.close();
-            f.close();
         } catch (FileNotFoundException e) {
             System.out.println(Message.FILE_NOT_FOUND.format());
         } catch (IOException e) {

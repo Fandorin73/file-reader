@@ -14,20 +14,18 @@ public class FileReadImpl implements FileRead {
     @Override
     public StringBuilder readFromFile(File file) {
         var stringBuilder = new StringBuilder();
-        try {
+        try(FileReader f = new FileReader(file);BufferedReader reader = new BufferedReader(f)) {
             if (file.length() < 1) {
                 throw new FileEmptyException("Ошибка чтения файла");
             } else {
-                FileReader f = new FileReader(file);
-                BufferedReader reader = new BufferedReader(f);
+
                 String line = null;
                 String ls = System.getProperty("line.separator");
                 while ((line = reader.readLine()) != null) {
                     stringBuilder.append(line);
                     stringBuilder.append(ls);
                 }
-                reader.close();
-                f.close();
+
             }
         } catch (FileNotFoundException e) {
             System.out.println(Message.FILE_NOT_FOUND.format());

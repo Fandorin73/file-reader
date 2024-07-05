@@ -24,8 +24,7 @@ public class FileWriteSortDistPoint implements FileWrite {
 
     @Override
     public void writeToFile(ArrayList<Point> points, File file, Boolean append) {
-        try {
-            var f = new FileOutputStream(file, append);
+        try( var f = new FileOutputStream(file, append);) {
             var result = points.stream()
                     .sorted(new PointDistanceFromOriginComparator())
                     .collect(Collectors.toList());
@@ -40,7 +39,6 @@ public class FileWriteSortDistPoint implements FileWrite {
                 f.write((ConstForPoint.LINE_Y + point.getY() + ConstForPoint.SKIP_LINE)
                         .getBytes(StandardCharsets.UTF_8));
             }
-            f.close();
         } catch (FileNotFoundException e) {
             System.out.println(Message.FILE_NOT_FOUND.format());
         } catch (IOException e) {
