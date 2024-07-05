@@ -1,15 +1,12 @@
+import constants.ConstForPoint;
 import dto.Point;
-import dto.comparator.PointDistanceFromOriginComparator;
-import parse.Parse;
 import parse.PointParse;
-import service.impl.FileReadImpl;
-import service.impl.FileWritePointImpl;
-import service.interfaces.FileRead;
-import service.interfaces.FileWrite;
+import service.impl.*;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
 
 //TODO: Написание тестов
 public class Main {
@@ -27,32 +24,61 @@ public class Main {
         Point p10 = new Point("Tenth Point", -20, 99);
         ArrayList<Point> points = new ArrayList<>();
         Collections.addAll(points, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
-        //Тест для сериализации
-        /* FileWrite fileWrite =new FileWriteSerialize();
-        fileWrite.writeToFile(points,new File("Points.txt"), false);
-        FileRead fileReadSerialize=new FileReadSerialize();
-        System.out.println(fileReadSerialize.readFromFile(new File("Points.txt")));*/
 
-        //Тест для записи в файл
-        FileWrite fileWrite = new FileWritePointImpl();
-        fileWrite.writeToFile(points, new File("Points.txt"), false);
+        //Тест сортировки точек и запись в файла
+        var fileRead = new FileReadImpl();
+        var parsePoint = new PointParse();
+        var arrayResult = new ArrayList<Point>();
+        var fileWrite1 = new FileWriteSortDistPoint();
 
-        //Тест чтения из файла
-        FileRead fileRead = new FileReadImpl();
-        PointParse parsePoint = new PointParse();
-        ArrayList<Point> arrayResult = new ArrayList<Point>();
         arrayResult = parsePoint
                 .parseToObj((StringBuilder) fileRead
                         .readFromFile(new File("Points.txt")));
-        for (Point point : arrayResult) {
-            System.out.println(point);
-        }
-        System.out.println();
-        arrayResult.stream()
-                .sorted(new PointDistanceFromOriginComparator())
-                .forEach(System.out::println);
 
+        fileWrite1.writeToFile(arrayResult, new File(ConstForPoint.FILE_STATISTICS_POINT), true);
 
     }
 
 }
+
+
+
+    /*   //Тест для сериализации
+        var fileWrite =new FileWriteSerialize();
+        fileWrite.writeToFile(points,new File("Points.txt"), false);
+        var fileReadSerialize=new FileReadSerialize();
+        System.out.println(fileReadSerialize.readFromFile(new File("Points.txt")));*/
+
+
+
+
+/* //Тест для записи в файл
+        System.out.println("Введите полный путь файла");
+        Scanner scanner = new Scanner(System.in);
+        String str = scanner.nextLine();
+        System.out.println("Введите 'yes', если хотите перезаписать файл\nВведите 'no', eсли хотите добавить данные в файл ");
+        String strAppend = scanner.nextLine();
+        var fileWrite = new FileWritePointImpl();
+        if (strAppend.equalsIgnoreCase("yes")) {
+            fileWrite.writeToFile(points, new File(str), false);
+        } else {
+            fileWrite.writeToFile(points, new File(str), true);
+        }
+*/
+
+
+/*      //Тест чтения из файла
+        var fileRead = new FileReadImpl();
+        var parsePoint = new PointParse();
+        var arrayResult = new ArrayList<Point>();
+
+        arrayResult = parsePoint
+                .parseToObj((StringBuilder) fileRead
+                        .readFromFile(new File("Points.txt")));
+
+        for (Point point : arrayResult) {
+            System.out.println(point);
+        }
+        System.out.println();*/
+
+

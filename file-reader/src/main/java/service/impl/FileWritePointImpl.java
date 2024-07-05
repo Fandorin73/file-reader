@@ -4,6 +4,7 @@ import constants.ConstForPoint;
 import constants.Message;
 import dto.Point;
 import service.interfaces.FileWrite;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -15,10 +16,8 @@ import java.util.ArrayList;
  */
 public class FileWritePointImpl implements FileWrite {
     @Override
-    public void writeToFile(ArrayList<Point> points,File file,Boolean append) {
-        try {
-            FileOutputStream f = new FileOutputStream(file,append);
-
+    public void writeToFile(ArrayList<Point> points, File file, Boolean append) {
+        try (var f = new FileOutputStream(file, append);) {
             for (Point point : points) {
                 f.write((ConstForPoint.LINE_NAME + point.getName() + ConstForPoint.SKIP_LINE)
                         .getBytes(StandardCharsets.UTF_8));
@@ -27,7 +26,6 @@ public class FileWritePointImpl implements FileWrite {
                 f.write((ConstForPoint.LINE_Y + point.getY() + ConstForPoint.SKIP_LINE)
                         .getBytes(StandardCharsets.UTF_8));
             }
-            f.close();
         } catch (FileNotFoundException e) {
             System.out.println(Message.FILE_NOT_FOUND.format());
         } catch (IOException e) {
